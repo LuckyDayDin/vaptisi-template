@@ -1,100 +1,56 @@
-/* 🎬 ON LOAD (intro sequence) */
+
+import { db, collection, addDoc } from "./firebase.js";
+
+/* 🎬 INTRO */
 window.addEventListener("load", () => {
 
   const roar = document.getElementById("roar");
   const music = document.getElementById("music");
 
-  /* 🔊 Lion roar */
   if (roar) {
     roar.volume = 1;
-    roar.play().catch(() => {
-      console.log("Autoplay blocked (click needed)");
-    });
+    roar.play().catch(() => {});
   }
 
-  /* 🎵 Background music */
   setTimeout(() => {
     if (music) {
       music.volume = 0.6;
-      music.play().catch(() => {
-        console.log("Music blocked");
-      });
+      music.play().catch(() => {});
     }
   }, 1500);
 
-  /* 📩 Show form μετά το intro */
   setTimeout(() => {
     const main = document.getElementById("main");
-    if (main) {
-      main.style.display = "block";
-    }
-  }, 6000);
-
+    if (main) main.style.display = "block";
+  }, 5000);
 });
 
 
-/* 💾 SAVE GUEST */
-function save() {
+/* 💾 SAVE (Firebase) */
+async function save() {
 
-  const nameInput = document.getElementById("name");
-  const peopleInput = document.getElementById("people");
-
-  const name = nameInput.value.trim();
-  const people = peopleInput.value;
+  const name = document.getElementById("name").value.trim();
+  const people = document.getElementById("people").value;
 
   if (!name || !people) {
     alert("Συμπλήρωσε όλα τα πεδία!");
     return;
   }
 
-  let guests = JSON.parse(localStorage.getItem("guests")) || [];
+  try {
+    await addDoc(collection(db, "guests"), {
+      name: name,
+      people: Number(people),
+      date: new Date().toLocaleString()
+    });
 
-  guests.push({
-    name: name,
-    people: Number(people),
-    date: new Date().toLocaleString()
-  });
+    alert("✅ Καταχωρήθηκε!");
 
-  localStorage.setItem("guests", JSON.stringify(guests));
+    document.getElementById("name").value = "";
+    document.getElementById("people").value = "";
 
-  alert("✅ Αποθηκεύτηκε!");
-
-  /* καθάρισμα input */
-  nameInput.value = "";
-  peopleInput.value = "";
+  } catch (error) {
+    console.error(error);
+    alert("❌ Σφάλμα αποθήκευσης");
+  }
 }
-
-
-/* 📊 GET STATS (για μελλοντικό admin page) */
-function getStats() {
-
-  let guests = JSON.parse(localStorage.getItem("guests")) || [];
-
-  let totalPeople = 0;
-
-  guests.forEach(g => {
-    totalPeople += g.people;
-  });
-
-  return {
-    totalGuests: guests.length,
-    totalPeople: totalPeople,
-    list: guests
-  };
-}
-
-
-/* 🔐 SIMPLE ADMIN CHECK (optional future use) */
-function checkAdmin(password) {
-  const adminPass = "1234"; // άλλαξέ το
-
-  return password === adminPass;
-}
-const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  projectId: "...",
-  storageBucket: "...",
-  messagingSenderId: "...",
-  appId: "..."
-};
