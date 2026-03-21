@@ -119,3 +119,13 @@ input, button {
   margin-top:10px;
   padding:10px;
 }
+/* ΚΡΥΒΕΙ ΤΗ ΣΕΛΙΔΑ ΣΤΗΝ ΑΡΧΗ */
+.main {
+  display:none;
+}
+
+/* FULLSCREEN SKY */
+body {
+  background:linear-gradient(to top, #000000, #ffcc33);
+  overflow:hidden;
+}
