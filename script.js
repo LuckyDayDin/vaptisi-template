@@ -1,84 +1,122 @@
-const SCRIPT_URL = "Here";
-const ADMIN_PASS = "1234";
+// 📦 Τοπική αποθήκευση (χωρίς server)
+let responses = JSON.parse(localStorage.getItem("responses")) || [];
 
-function start(){
+// 🚀 INTRO + ΗΧΟΣ + ΕΜΦΑΝΙΣΗ
 window.onload = () => {
+
+  // κρύβει αρχικά τη φόρμα
+  document.getElementById("main").style.display = "none";
+
   setTimeout(() => {
-    let roar = document.getElementById('roar');
-    let music = document.getElementById('music');
 
-    roar.play().catch(()=>{});
-    setTimeout(()=> music.play().catch(()=>{}), 1500);
+    // 🦁 ήχος λιονταριού
+    let roar = document.getElementById("roar");
+    if (roar) {
+      roar.play().catch(() => {});
+    }
 
-    document.getElementById('main').style.display='block';
+    // 🎵 μουσική μετά
+    setTimeout(() => {
+      let music = document.getElementById("music");
+      if (music) {
+        music.play().catch(() => {});
+      }
+    }, 1500);
 
-  }, 2000);
+    // 👑 εμφάνιση περιεχομένου
+    document.getElementById("main").style.display = "block";
+
+  }, 4000);
 };
 
-function save(){
-let name=document.getElementById('name').value;
-let people=document.getElementById('people').value;
-let attend=document.querySelector('input[name="attend"]:checked');
+// 📩 ΑΠΟΘΗΚΕΥΣΗ ΑΠΑΝΤΗΣΗΣ
+function save() {
 
-if(!name || !people || !attend){
-alert("Συμπλήρωσε όλα!");
-return;
+  let name = document.getElementById("name").value;
+  let people = document.getElementById("people").value;
+  let attend = document.querySelector('input[name="attend"]:checked');
+
+  if (!name || !people || !attend) {
+    alert("Συμπλήρωσε όλα τα πεδία!");
+    return;
+  }
+
+  let data = {
+    name: name,
+    people: people,
+    attend: attend.value
+  };
+
+  responses.push(data);
+
+  // αποθήκευση στο browser
+  localStorage.setItem("responses", JSON.stringify(responses));
+
+  alert("Η απάντηση καταχωρήθηκε!");
+
+  // καθάρισμα φόρμας
+  document.getElementById("name").value = "";
+  document.getElementById("people").value = "";
+  document.querySelectorAll('input[name="attend"]').forEach(el => el.checked = false);
 }
 
-fetch(SCRIPT_URL,{
-method:"POST",
-body: JSON.stringify({
-name:name,
-people:people,
-attend:attend.value
-})
-})
-.then(()=>alert("Καταχωρήθηκε! 🎉"))
-.catch(()=>alert("Σφάλμα"));
+// 👑 ΑΝΟΙΓΜΑ ADMIN LOGIN
+function openAdmin() {
+  document.getElementById("login").style.display = "block";
 }
 
-function openAdmin(){
-document.getElementById("login").style.display="flex";
+// 🔐 PASSWORD CHECK
+function checkPass() {
+
+  let pass = document.getElementById("pass").value;
+
+  if (pass === "1234") { // 👉 άλλαξέ το αν θες
+    document.getElementById("login").style.display = "none";
+    showData();
+  } else {
+    alert("Λάθος password!");
+  }
 }
 
-function checkPass(){
-let p=document.getElementById("pass").value;
+// 📊 ΕΜΦΑΝΙΣΗ ΣΤΑΤΙΣΤΙΚΩΝ
+function showData() {
 
-if(p===ADMIN_PASS){
-document.getElementById("login").style.display="none";
-loadData();
-}else{
-alert("Λάθος password");
-}
-}
+  let panel = document.getElementById("adminPanel");
+  let dataDiv = document.getElementById("data");
 
-function loadData(){
-fetch(SCRIPT_URL)
-.then(res=>res.json())
-.then(data=>{
+  panel.style.display = "block";
 
-let html="";
-let total=0;
-let yes=0;
+  if (responses.length === 0) {
+    dataDiv.innerHTML = "<p>Δεν υπάρχουν απαντήσεις</p>";
+    return;
+  }
 
-data.slice(1).forEach(row=>{
-let name=row[0];
-let attend=row[1];
-let people=parseInt(row[2])||0;
+  let html = "";
 
-if(attend==="Ναι"){
-yes++;
-total+=people;
-}
+  let totalYes = 0;
+  let totalPeople = 0;
 
-html+=`${name} - ${attend} (${people})<br>`;
-});
+  responses.forEach(r => {
 
-html+=`<hr>✅ Έρχονται: ${yes}`;
-html+=`<br>👥 Σύνολο ατόμων: ${total}`;
+    if (r.attend === "Ναι") {
+      totalYes++;
+      totalPeople += parseInt(r.people);
+    }
 
-document.getElementById("adminPanel").style.display="block";
-document.getElementById("data").innerHTML=html;
+    html += `
+      <div style="margin-bottom:10px; padding:10px; background:#eee;">
+        <strong>${r.name}</strong><br>
+        Άτομα: ${r.people}<br>
+        Απάντηση: ${r.attend}
+      </div>
+    `;
+  });
 
-});
+  html += `
+    <hr>
+    <strong>Σύνολο ΝΑΙ:</strong> ${totalYes}<br>
+    <strong>Σύνολο Ατόμων:</strong> ${totalPeople}
+  `;
+
+  dataDiv.innerHTML = html;
 }
