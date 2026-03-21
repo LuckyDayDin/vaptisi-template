@@ -1,15 +1,19 @@
-const SCRIPT_URL = "";
+const SCRIPT_URL = "Here";
 const ADMIN_PASS = "1234";
 
 function start(){
-document.getElementById('main').style.display='block';
+window.onload = () => {
+  setTimeout(() => {
+    let roar = document.getElementById('roar');
+    let music = document.getElementById('music');
 
-let roar=document.getElementById('roar');
-let music=document.getElementById('music');
+    roar.play().catch(()=>{});
+    setTimeout(()=> music.play().catch(()=>{}), 1500);
 
-roar.play();
-roar.onended=()=>music.play();
-}
+    document.getElementById('main').style.display='block';
+
+  }, 2000);
+};
 
 function save(){
 let name=document.getElementById('name').value;
