@@ -90,3 +90,11 @@ function checkAdmin(password) {
 
   return password === adminPass;
 }
+const firebaseConfig = {
+  apiKey: "...",
+  authDomain: "...",
+  projectId: "...",
+  storageBucket: "...",
+  messagingSenderId: "...",
+  appId: "..."
+};
