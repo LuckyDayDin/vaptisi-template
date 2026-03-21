@@ -3,80 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Βάπτιση Ματθαίου</title>
 
-<link rel="stylesheet" href="style.css">
+<title>Βάπτιση</title>
+
+<style>
+
+/* RESET */
+body {
+  margin:0;
+  overflow:hidden;
+  font-family:sans-serif;
+}
+
+/* 🌈 SKY */
+.sky {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    to top,
+    #ff7b00,
+    #ffb347,
+    #87ceeb
+  );
+}
+
+/* ☀️ SUN */
+.sun {
+  position:absolute;
+  bottom:-150px;
+  left:50%;
+  transform:translateX(-50%);
+  width:180px;
+  height:180px;
+  background:yellow;
+  border-radius:50%;
+  box-shadow:0 0 40px orange;
+
+  animation:sunrise 4s ease-out forwards;
+}
+
+@keyframes sunrise {
+  to { bottom:40%; }
+}
+
+/* ☁️ CLOUDS */
+.cloud {
+  position:absolute;
+  width:150px;
+  height:80px;
+  background:white;
+  border-radius:50px;
+  animation:cloudMove 25s linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content:'';
+  position:absolute;
+  background:white;
+  border-radius:50%;
+}
+
+.cloud::before {
+  width:80px;
+  height:80px;
+  top:-30px;
+  left:20px;
+}
+
+.cloud::after {
+  width:100px;
+  height:100px;
+  top:-40px;
+  right:10px;
+}
+
+.cloud1 { top:20%; left:-200px; }
+.cloud2 { top:40%; left:-300px; animation-delay:5s; }
+
+@keyframes cloudMove {
+  to { transform:translateX(200vw); }
+}
+
+/* 🪨 ROCK */
+.rock {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:40%;
+  background:#5c3b1e;
+  clip-path:polygon(0 100%, 100% 100%, 70% 40%, 30% 40%);
+}
+
+/* 🦁 RAFIKI */
+.rafiki {
+  position:absolute;
+  bottom:-200px;
+  left:50%;
+  transform:translateX(-50%);
+  animation:lift 5s ease-out forwards;
+}
+
+.rafiki img {
+  width:140px;
+}
+
+@keyframes lift {
+  0% { bottom:-200px; }
+  50% { bottom:35%; }
+  100% { bottom:50%; }
+}
+
+/* ✨ TITLE */
+.title {
+  position:absolute;
+  top:20%;
+  width:100%;
+  text-align:center;
+  font-size:32px;
+  color:white;
+  text-shadow:2px 2px 10px black;
+  opacity:0;
+  animation:fadeTitle 3s forwards 2s;
+}
+
+@keyframes fadeTitle {
+  to { opacity:1; }
+}
+
+/* 📩 FORM */
+.main {
+  display:none;
+  position:absolute;
+  top:60%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.card {
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+  width:250px;
+}
+
+input {
+  width:90%;
+  padding:10px;
+  margin:5px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+button {
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  background:orange;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover {
+  background:darkorange;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- 🎬 INTRO -->
-<div class="intro">
-  <h1>Ο Κύκλος της Ζωής 🦁</h1>
-</div>
+<!-- 🌈 SKY -->
+<div class="sky"></div>
+
+<!-- ☀️ SUN -->
+<div class="sun"></div>
 
 <!-- ☁️ CLOUDS -->
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
 
-<!-- 🪨 PRIDE ROCK -->
-<div class="pride-rock"></div>
+<!-- 🪨 ROCK -->
+<div class="rock"></div>
 
-<!-- 🌅 SUN -->
-<div class="sun"></div>
-
-<!-- 🦁 RAFIKI + SIMBA -->
+<!-- 🦁 RAFIKI -->
 <div class="rafiki">
-  <img src="simba.png" alt="Simba">
+  <img src="simba.png">
 </div>
+
+<!-- ✨ TITLE -->
+<div class="title">Η Βάπτιση του Ματθαίου</div>
 
 <!-- 🔊 AUDIO -->
 <audio id="roar" src="lion.mp3"></audio>
 <audio id="music" src="circle.mp3" loop></audio>
 
-<!-- 📩 MAIN -->
-<div class="main" id="main">
+<!-- 📩 FORM -->
+<div id="main" class="main">
   <div class="card">
-
-    <h2>Πρόσκληση Βάπτισης</h2>
-
-    <p>
-      Σας προσκαλούμε σε βάπτιση του παιδιού μας<br><br>
-      <strong>Ματθαίου Σαπανίδη</strong><br><br>
-      15 Αυγούστου 2026<br><br>
-      Εκκλησία Λαγυνών
-    </p>
+    <h3>Θα έρθεις;</h3>
 
     <input id="name" placeholder="Όνομα">
     <input id="people" type="number" placeholder="Άτομα">
 
-    <label>
-      <input type="radio" name="attend" value="Ναι"> Ναι
-    </label>
-
-    <label>
-      <input type="radio" name="attend" value="Όχι"> Όχι
-    </label>
-
     <button onclick="save()">Αποστολή</button>
-
   </div>
 </div>
 
-<!-- 👑 ADMIN -->
-<button class="admin-btn" onclick="openAdmin()">👑</button>
+<script>
 
-<div id="login" class="login">
-  <input type="password" id="pass" placeholder="Password">
-  <button onclick="checkPass()">Είσοδος</button>
-</div>
+/* 🎬 INTRO TIMING */
+window.onload = () => {
 
-<div id="adminPanel" class="adminPanel">
-  <h2>📊 Στατιστικά</h2>
-  <div id="data"></div>
-</div>
+  const roar = document.getElementById("roar");
+  const music = document.getElementById("music");
 
-<script src="script.js"></script>
+  roar.play();
+
+  setTimeout(() => {
+    music.play();
+  }, 1500);
+
+  setTimeout(() => {
+    document.getElementById("main").style.display = "block";
+  }, 6000);
+};
+
+/* 💾 LOCAL SAVE */
+function save() {
+  const name = document.getElementById("name").value;
+  const people = document.getElementById("people").value;
+
+  let data = JSON.parse(localStorage.getItem("guests") || "[]");
+
+  data.push({ name, people });
+
+  localStorage.setItem("guests", JSON.stringify(data));
+
+  alert("Αποθηκεύτηκε!");
+}
+
+</script>
 
 </body>
 </html>
