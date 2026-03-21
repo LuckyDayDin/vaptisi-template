@@ -2,19 +2,47 @@ import { db, collection, addDoc } from "./firebase.js";
 
 window.save = async function () {
 
-  const name = document.getElementById("name").value.trim();
-  const people = document.getElementById("people").value;
+  const nameInput = document.getElementById("name");
+  const peopleInput = document.getElementById("people");
+  const btn = document.querySelector("button");
 
-  if (!name || !people) {
-    alert("Συμπλήρωσε όλα τα πεδία!");
+  const name = nameInput.value.trim();
+  const people = parseInt(peopleInput.value);
+
+  /* ❌ VALIDATION */
+  if (name.length < 2) {
+    alert("Βάλε σωστό όνομα!");
     return;
   }
 
-  await addDoc(collection(db, "guests"), {
-    name: name,
-    people: Number(people),
-    date: new Date().toLocaleString()
-  });
+  if (isNaN(people) || people <= 0 || people > 20) {
+    alert("Βάλε σωστό αριθμό ατόμων (1-20)");
+    return;
+  }
 
-  alert("✅ Καταχωρήθηκε!");
+  /* 🚫 Αποφυγή spam click */
+  btn.disabled = true;
+  btn.innerText = "Αποθήκευση...";
+
+  try {
+    await addDoc(collection(db, "guests"), {
+      name: name,
+      people: people,
+      date: new Date().toLocaleString()
+    });
+
+    alert("✅ Καταχωρήθηκε!");
+
+    // καθάρισμα πεδίων
+    nameInput.value = "";
+    peopleInput.value = "";
+
+  } catch (error) {
+    console.error("Firebase error:", error);
+    alert("❌ Σφάλμα! Δοκίμασε ξανά.");
+  }
+
+  /* 🔓 Ενεργοποίηση ξανά */
+  btn.disabled = false;
+  btn.innerText = "Αποθήκευση";
 };
