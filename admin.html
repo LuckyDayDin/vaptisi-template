@@ -1,91 +1,64 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Panel</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Admin Panel</title>
 </head>
 
-<body style="background:#111; color:white; text-align:center; padding:20px;">
+<body style="background:#111;color:white;text-align:center">
 
 <h1>🔐 Admin Panel</h1>
 
-<div id="loginBox">
-  <input type="password" id="password" placeholder="Βάλε password">
-  <br><br>
-  <button onclick="login()">Login</button>
-</div>
+<input type="password" id="pass" placeholder="password">
+<button onclick="login()">Login</button>
 
-<div id="dashboard" style="display:none;">
-
+<div id="panel" style="display:none">
   <h2>📊 Στατιστικά</h2>
-
-  <p id="totalGuests"></p>
-  <p id="totalPeople"></p>
-
-  <h3>📋 Λίστα</h3>
+  <p id="total"></p>
   <div id="list"></div>
-
-  <br>
-  <button onclick="clearData()">🗑 Καθαρισμός</button>
-
 </div>
 
-<script>
+<script type="module">
 
-/* 🔐 LOGIN */
-function login() {
-  const pass = document.getElementById("password").value;
+import {
+  db,
+  collection,
+  getDocs
+} from "./firebase.js";
 
-  if (pass === "1234") {
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-    loadData();
+window.login = function () {
+  if (document.getElementById("pass").value === "1234") {
+    document.getElementById("panel").style.display = "block";
+    load();
   } else {
-    alert("❌ Λάθος password");
+    alert("Λάθος password");
   }
-}
+};
 
-/* 📊 LOAD DATA */
-function loadData() {
+async function load() {
 
-  let guests = JSON.parse(localStorage.getItem("guests")) || [];
+  const querySnapshot = await getDocs(collection(db, "guests"));
 
-  let totalPeople = 0;
+  let total = 0;
   let html = "";
 
-  guests.forEach(g => {
-    totalPeople += g.people;
+  querySnapshot.forEach(doc => {
+    const g = doc.data();
+
+    total += g.people;
 
     html += `
-      <div style="
-        background:#222;
-        margin:10px;
-        padding:10px;
-        border-radius:10px;
-      ">
-        👤 ${g.name} <br>
-        👥 Άτομα: ${g.people} <br>
-        🕒 ${g.date}
+      <div style="background:#222;margin:10px;padding:10px;border-radius:10px">
+        👤 ${g.name}<br>
+        👥 ${g.people}
       </div>
     `;
   });
 
-  document.getElementById("totalGuests").innerText =
-    "Σύνολο καλεσμένων: " + guests.length;
-
-  document.getElementById("totalPeople").innerText =
-    "Σύνολο ατόμων: " + totalPeople;
+  document.getElementById("total").innerText =
+    "Σύνολο ατόμων: " + total;
 
   document.getElementById("list").innerHTML = html;
-}
-
-/* 🗑 CLEAR DATA */
-function clearData() {
-  if (confirm("Να διαγραφούν όλα;")) {
-    localStorage.removeItem("guests");
-    loadData();
-  }
 }
 
 </script>
