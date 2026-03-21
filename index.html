@@ -4,61 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Βάπτιση Ματθαίου</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+<!-- 🎬 INTRO -->
+<div class="intro">
+  <h1>Ο Κύκλος της Ζωής 🦁</h1>
+</div>
+
+<!-- ☁️ CLOUDS -->
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
+
+<!-- 🌅 SUN -->
 <div class="sun"></div>
 
-<div class="pride-rock">
-  <div class="rock"></div>
-  <div class="simba"></div>
-  <div class="rafiki"></div>
-  <div class="baby"></div>
-</div>
-  <div class="intro">
-  <h1>Ο Κύκλος της Ζωής 🦁</h1>
-  </div>
-
-<h1 onclick="start()">Σας προσκαλούμε σε μια όμορφη μέρα 🦁</h1>
-
+<!-- 🔊 AUDIO -->
 <audio id="roar" src="lion.mp3"></audio>
 <audio id="music" src="circle.mp3" loop></audio>
 
+<!-- 📩 MAIN CONTENT -->
 <div class="main" id="main">
+
   <div class="card">
+
     <h2>Πρόσκληση Βάπτισης</h2>
+
     <p>
-    Ματθαίου Σαπανίδη<br>
-    15 Αυγούστου 2026<br>
-    Λαγύνα
+      Σας προσκαλούμε σε βάπτιση του παιδιού μας<br><br>
+
+      <strong>Ματθαίου Σαπανίδη</strong><br><br>
+
+      που θα πραγματοποιηθεί στις<br>
+      <strong>15 Αυγούστου 2026</strong><br><br>
+
+      στην εκκλησία της Λαγύνας
     </p>
 
-    <input id="name" placeholder="Όνομα">
-    <input id="people" type="number" placeholder="Άτομα">
+    <input id="name" placeholder="Το όνομά σας">
+    <input id="people" type="number" placeholder="Αριθμός ατόμων">
 
-    <label><input type="radio" name="attend" value="Ναι"> Ναι</label>
-    <label><input type="radio" name="attend" value="Όχι"> Όχι</label>
+    <br><br>
+
+    <label>
+      <input type="radio" name="attend" value="Ναι"> Ναι
+    </label>
+
+    <label>
+      <input type="radio" name="attend" value="Όχι"> Όχι
+    </label>
+
+    <br><br>
 
     <button onclick="save()">Αποστολή</button>
+
   </div>
+
 </div>
 
+<!-- 👑 ADMIN BUTTON -->
 <button class="admin-btn" onclick="openAdmin()">👑</button>
 
+<!-- 🔐 LOGIN -->
 <div id="login" class="login">
-  <h2>Admin Login</h2>
+  <h3>Admin Login</h3>
   <input type="password" id="pass" placeholder="Password">
   <button onclick="checkPass()">Είσοδος</button>
 </div>
 
+<!-- 📊 ADMIN PANEL -->
 <div id="adminPanel" class="adminPanel">
   <h2>📊 Στατιστικά</h2>
   <div id="data"></div>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
