@@ -1,10 +1,41 @@
 body {
   margin:0;
-  font-family:sans-serif;
   background:black;
+  font-family:sans-serif;
+  overflow:hidden;
   color:white;
-  text-align:center;
-  .sun {
+}
+
+/* INTRO */
+.intro {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+  animation:fadeOut 4s forwards;
+}
+
+.intro h1 {
+  font-size:28px;
+  opacity:0;
+  animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity:1; }
+}
+
+@keyframes fadeOut {
+  80% { opacity:1; }
+  100% { opacity:0; visibility:hidden; }
+}
+
+/* SUN */
+.sun {
   position:absolute;
   bottom:-150px;
   left:50%;
@@ -14,10 +45,16 @@ body {
   background:radial-gradient(circle, gold 40%, orange 70%);
   border-radius:50%;
   animation:sunrise 4s ease-out forwards;
-  box-shadow:0 0 60px gold;
+  box-shadow:0 0 80px gold;
+  z-index:1;
 }
 
-/* ΑΚΤΙΝΕΣ */
+@keyframes sunrise {
+  from { bottom:-150px; opacity:0; }
+  to { bottom:55%; opacity:1; }
+}
+
+/* RAYS */
 .sun::before {
   content:"";
   position:absolute;
@@ -26,10 +63,14 @@ body {
   top:-80px;
   left:-80px;
   background:radial-gradient(circle, rgba(255,215,0,0.4), transparent 70%);
-  animation:rays 6s linear infinite;
+  animation:spin 10s linear infinite;
 }
 
-/* ΚΙΝΟΥΜΕΝΑ ΣΥΝΝΕΦΑ */
+@keyframes spin {
+  to { transform:rotate(360deg); }
+}
+
+/* CLOUDS */
 .cloud {
   position:absolute;
   width:120px;
@@ -58,113 +99,23 @@ body {
   to { left:110%; }
 }
 
-/* SUN ANIMATION */
-@keyframes sunrise {
-  from {
-    bottom:-150px;
-    opacity:0;
-  }
-  to {
-    bottom:45%;
-    opacity:1;
-  }
+/* MAIN */
+.main {
+  display:none;
+  position:relative;
+  z-index:2;
+  padding:20px;
 }
-
-/* ΑΚΤΙΝΕΣ ΚΙΝΗΣΗ */
-@keyframes rays {
-  from { transform:rotate(0deg); }
-  to { transform:rotate(360deg); }
-}
-}
-
-
-@keyframes rise { to { bottom:40%; } }
-
-.pride-rock {
-  position:absolute;
-  bottom:30%;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.rock {
-  width:150px;height:50px;background:#333;
-  clip-path:polygon(0% 100%,100% 70%,80% 100%);
-}
-
-.simba {
-  width:20px;height:20px;background:black;border-radius:50%;
-  position:absolute;top:-10px;right:10px;
-}
-
-.rafiki {
-  width:15px;height:40px;background:black;position:absolute;left:50px;
-}
-
-.baby {
-  width:15px;height:15px;background:gold;border-radius:50%;
-  position:absolute;left:52px;bottom:30px;
-  animation:lift 3s;
-}
-
-@keyframes lift { to { transform:translateY(-30px); } }
-
-.main { display:none; padding:20px; }
 
 .card {
-  background:white;color:black;padding:20px;border-radius:10px;
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:12px;
 }
 
-input,button {
-  width:100%;margin-top:10px;padding:10px;
-}
-
-.admin-btn {
-  position:fixed;bottom:10px;right:10px;opacity:0.4;
-}
-
-.login {
-  display:none;
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:black;
-  justify-content:center;align-items:center;flex-direction:column;
-}
-
-.adminPanel {
-  display:none;background:#111;padding:20px;
-}
-body {
-  margin:0;
-  background:black;
-  overflow:hidden;
-}
-
-.intro {
-  position:fixed;
+input, button {
   width:100%;
-  height:100%;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  z-index:999;
-  animation:fadeOut 5s forwards;
-}
-
-.intro h1 {
-  color:white;
-  font-size:28px;
-  opacity:0;
-  animation:fadeIn 2s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity:1; }
-}
-
-@keyframes fadeOut {
-  0% { opacity:1; }
-  80% { opacity:1; }
-  100% { opacity:0; visibility:hidden; }
+  margin-top:10px;
+  padding:10px;
 }
