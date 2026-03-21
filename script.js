@@ -1,4 +1,4 @@
-const SCRIPT_URL = "ΒΑΛΕ_ΕΔΩ";
+const SCRIPT_URL = "";
 const ADMIN_PASS = "1234";
 
 function start(){
