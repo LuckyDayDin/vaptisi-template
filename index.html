@@ -12,42 +12,43 @@
 
 <!-- 🎬 INTRO -->
 <div class="intro">
-  <h1> Σας προς καλούμε σε μια πολύ όμορφη μέρα 🦁</h1>
+  <h1>Ο Κύκλος της Ζωής 🦁</h1>
 </div>
 
 <!-- ☁️ CLOUDS -->
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
 
+<!-- 🪨 PRIDE ROCK -->
+<div class="pride-rock"></div>
+
 <!-- 🌅 SUN -->
 <div class="sun"></div>
+
+<!-- 🦁 RAFIKI + SIMBA -->
+<div class="rafiki">
+  <img src="simba.png" alt="Simba">
+</div>
 
 <!-- 🔊 AUDIO -->
 <audio id="roar" src="lion.mp3"></audio>
 <audio id="music" src="circle.mp3" loop></audio>
 
-<!-- 📩 MAIN CONTENT -->
+<!-- 📩 MAIN -->
 <div class="main" id="main">
-
   <div class="card">
 
     <h2>Πρόσκληση Βάπτισης</h2>
 
     <p>
       Σας προσκαλούμε σε βάπτιση του παιδιού μας<br><br>
-
       <strong>Ματθαίου Σαπανίδη</strong><br><br>
-
-      που θα πραγματοποιηθεί στις<br>
-      <strong>15 Αυγούστου 2026</strong><br><br>
-
-      στην εκκλησία της Λαγύνας
+      15 Αυγούστου 2026<br><br>
+      Εκκλησία Λαγυνών
     </p>
 
-    <input id="name" placeholder="Το όνομά σας">
-    <input id="people" type="number" placeholder="Αριθμός ατόμων">
-
-    <br><br>
+    <input id="name" placeholder="Όνομα">
+    <input id="people" type="number" placeholder="Άτομα">
 
     <label>
       <input type="radio" name="attend" value="Ναι"> Ναι
@@ -57,25 +58,19 @@
       <input type="radio" name="attend" value="Όχι"> Όχι
     </label>
 
-    <br><br>
-
     <button onclick="save()">Αποστολή</button>
 
   </div>
-
 </div>
 
-<!-- 👑 ADMIN BUTTON -->
+<!-- 👑 ADMIN -->
 <button class="admin-btn" onclick="openAdmin()">👑</button>
 
-<!-- 🔐 LOGIN -->
 <div id="login" class="login">
-  <h3>Admin Login</h3>
   <input type="password" id="pass" placeholder="Password">
   <button onclick="checkPass()">Είσοδος</button>
 </div>
 
-<!-- 📊 ADMIN PANEL -->
 <div id="adminPanel" class="adminPanel">
   <h2>📊 Στατιστικά</h2>
   <div id="data"></div>
