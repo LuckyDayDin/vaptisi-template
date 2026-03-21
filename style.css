@@ -6,17 +6,6 @@ body {
   text-align:center;
 }
 
-.sun {
-  position:absolute;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:120px;
-  height:120px;
-  background:gold;
-  border-radius:50%;
-  animation:rise 5s forwards;
-}
 
 @keyframes rise { to { bottom:40%; } }
 
