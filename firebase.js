@@ -1,25 +1,26 @@
 // 🔥 Firebase SDK
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getFirestore,
   collection,
   addDoc,
-  getDocs,
-  deleteDoc,
-  doc
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ⚠️ ΒΑΛΕ ΕΔΩ ΤΑ ΔΙΚΑ ΣΟΥ
+// ✅ ΒΑΛΕ ΤΑ ΔΙΚΑ ΣΟΥ ΑΠΟ FIREBASE
 const firebaseConfig = {
-  apiKey: "PUT-YOURS",
-  authDomain: "PUT-YOURS",
-  projectId: "PUT-YOURS",
-  storageBucket: "PUT-YOURS",
-  messagingSenderId: "PUT-YOURS",
-  appId: "PUT-YOURS"
+  apiKey: "XXXXXXXX",
+  authDomain: "XXXXXXXX.firebaseapp.com",
+  projectId: "XXXXXXXX",
+  storageBucket: "XXXXXXXX.appspot.com",
+  messagingSenderId: "XXXXXXXX",
+  appId: "XXXXXXXX"
 };
 
+// 🚀 INIT
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export { db, collection, addDoc, getDocs, deleteDoc, doc };
+// 📦 EXPORT
+export { db, collection, addDoc, getDocs };
