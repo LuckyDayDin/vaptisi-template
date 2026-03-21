@@ -1,4 +1,3 @@
-// 🔥 Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
@@ -8,19 +7,17 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ✅ ΒΑΛΕ ΤΑ ΔΙΚΑ ΣΟΥ ΑΠΟ FIREBASE
 const firebaseConfig = {
-  apiKey: "XXXXXXXX",
-  authDomain: "XXXXXXXX.firebaseapp.com",
-  projectId: "XXXXXXXX",
-  storageBucket: "XXXXXXXX.appspot.com",
-  messagingSenderId: "XXXXXXXX",
-  appId: "XXXXXXXX"
+  apiKey: "AIzaSyC4tHnzzHFCULBEO_gu7EfE5Rv1Yq7OVjk",
+  authDomain: "vaptisi-60066.firebaseapp.com",
+  projectId: "vaptisi-60066",
+  storageBucket: "vaptisi-60066.firebasestorage.app",
+  messagingSenderId: "557129876001",
+  appId: "1:557129876001:web:8af2ef4ecd246dd566d960",
+  measurementId: "G-F53K4E7BMZ"
 };
 
-// 🚀 INIT
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 📦 EXPORT
 export { db, collection, addDoc, getDocs };
