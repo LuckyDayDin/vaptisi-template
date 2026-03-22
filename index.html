@@ -3,60 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Βάπτιση</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ ΣΩΣΤΑ PATHS -->
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
-  <!-- 🎵 ΜΟΥΣΙΚΗ -->
-  <audio id="music" src="music.mp3"></audio>
+  <!-- 🎵 MUSIC -->
+  <audio id="music" src="./assets/intro.mp3"></audio>
 
   <!-- 🎬 INTRO -->
   <div id="intro">
-
     <div class="sun"></div>
     <div class="clouds"></div>
 
-    <!-- 🦁 Simba Scene -->
     <div class="pride-rock">
-      <img src="simba.png" class="simba">
+      <img src="./assets/simba.png" class="simba">
     </div>
 
     <h1 class="title">Η Βάπτισή μου</h1>
-    <p class="subtitle">Σε περιμένουμε!</p>
-
     <button id="startBtn">▶ Ξεκίνα</button>
-
   </div>
 
   <!-- 📝 APP -->
   <div id="app" class="hidden">
     <div class="container">
-      <h1>🌤️ Δήλωση Παρουσίας</h1>
+      <h1>Δήλωση Παρουσίας</h1>
 
       <input id="name" placeholder="Όνομα">
       <input id="people" type="number" placeholder="Άτομα">
 
-      <button id="saveBtn" onclick="save()">Αποθήκευση</button>
+      <button id="saveBtn">Αποθήκευση</button>
     </div>
   </div>
 
-  <script type="module" src="app.js"></script>
+  <!-- ✅ MODULE -->
+  <script type="module" src="./app.js"></script>
+
 </body>
 </html>
-<audio id="music" src="assets/intro.mp3"></audio>
-
-<div id="intro">
-
-  <div class="sun"></div>
-  <div class="clouds"></div>
-
-  <div class="pride-rock">
-    <img src="assets/simba.png" class="simba">
-  </div>
-
-  <h1 class="title">Η Βάπτισή μου</h1>
-  <p class="subtitle">Σε περιμένουμε!</p>
-
-  <button id="startBtn">▶ Ξεκίνα</button>
-
-</div>
