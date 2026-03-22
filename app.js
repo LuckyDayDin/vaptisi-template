@@ -1,55 +1,49 @@
-
 import { db, collection, addDoc } from "./firebase.js";
 
-/* 🎬 START BUTTON */
-const startBtn = document.getElementById("startBtn");
-const music = document.getElementById("music");
+/* ✅ WAIT DOM */
+window.addEventListener("DOMContentLoaded", () => {
 
-startBtn.onclick = () => {
+  const startBtn = document.getElementById("startBtn");
+  const music = document.getElementById("music");
+  const saveBtn = document.getElementById("saveBtn");
 
-  music.play(); // 🎵 ξεκινάει μουσική
+  /* 🎬 START */
+  startBtn.onclick = () => {
 
-  setTimeout(() => {
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("app").classList.remove("hidden");
-  }, 5000);
-};
+    music.play().catch(() => {}); // avoid crash
 
-/* 💾 SAVE */
-window.save = async function () {
+    setTimeout(() => {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("app").classList.remove("hidden");
+    }, 4000);
+  };
 
-  const name = document.getElementById("name").value.trim();
-  const people = parseInt(document.getElementById("people").value);
-  const btn = document.getElementById("saveBtn");
+  /* 💾 SAVE */
+  saveBtn.onclick = async () => {
 
-  if (name.length < 2) return alert("Βάλε όνομα");
-  if (!people || people < 1) return alert("Βάλε άτομα");
+    const name = document.getElementById("name").value.trim();
+    const people = parseInt(document.getElementById("people").value);
 
-  btn.disabled = true;
+    if (name.length < 2) return alert("Βάλε όνομα");
+    if (!people || people < 1) return alert("Βάλε άτομα");
 
-  try {
-    await addDoc(collection(db, "guests"), {
-      name,
-      people,
-      date: new Date().toLocaleString()
-    });
+    saveBtn.disabled = true;
 
-    alert("✅ Έτοιμο!");
-  } catch {
-    alert("❌ error");
-  }
+    try {
+      await addDoc(collection(db, "guests"), {
+        name,
+        people,
+        date: new Date().toLocaleString()
+      });
 
-  btn.disabled = false;
-};
-const startBtn = document.getElementById("startBtn");
-const music = document.getElementById("music");
+      alert("✅ Καταχωρήθηκε!");
 
-startBtn.onclick = () => {
+    } catch (e) {
+      console.error(e);
+      alert("❌ Firebase error");
+    }
 
-  music.play();
+    saveBtn.disabled = false;
+  };
 
-  setTimeout(() => {
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("app").classList.remove("hidden");
-  }, 5000);
-};
+});
