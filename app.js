@@ -41,3 +41,15 @@ window.save = async function () {
 
   btn.disabled = false;
 };
+const startBtn = document.getElementById("startBtn");
+const music = document.getElementById("music");
+
+startBtn.onclick = () => {
+
+  music.play();
+
+  setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("app").classList.remove("hidden");
+  }, 5000);
+};
