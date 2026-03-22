@@ -1,33 +1,31 @@
+
 import { db, collection, addDoc } from "./firebase.js";
 
-/* 🎬 INTRO → APP */
-setTimeout(() => {
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("app").classList.remove("hidden");
-}, 6000);
+/* 🎬 START BUTTON */
+const startBtn = document.getElementById("startBtn");
+const music = document.getElementById("music");
+
+startBtn.onclick = () => {
+
+  music.play(); // 🎵 ξεκινάει μουσική
+
+  setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("app").classList.remove("hidden");
+  }, 5000);
+};
 
 /* 💾 SAVE */
 window.save = async function () {
 
-  const nameInput = document.getElementById("name");
-  const peopleInput = document.getElementById("people");
+  const name = document.getElementById("name").value.trim();
+  const people = parseInt(document.getElementById("people").value);
   const btn = document.getElementById("saveBtn");
 
-  const name = nameInput.value.trim();
-  const people = parseInt(peopleInput.value);
-
-  if (name.length < 2) {
-    alert("Βάλε σωστό όνομα!");
-    return;
-  }
-
-  if (isNaN(people) || people <= 0 || people > 20) {
-    alert("Βάλε σωστό αριθμό (1-20)");
-    return;
-  }
+  if (name.length < 2) return alert("Βάλε όνομα");
+  if (!people || people < 1) return alert("Βάλε άτομα");
 
   btn.disabled = true;
-  btn.innerText = "Αποθήκευση...";
 
   try {
     await addDoc(collection(db, "guests"), {
@@ -36,15 +34,10 @@ window.save = async function () {
       date: new Date().toLocaleString()
     });
 
-    alert("✅ Καταχωρήθηκε!");
-
-    nameInput.value = "";
-    peopleInput.value = "";
-
-  } catch (e) {
-    alert("❌ Σφάλμα");
+    alert("✅ Έτοιμο!");
+  } catch {
+    alert("❌ error");
   }
 
   btn.disabled = false;
-  btn.innerText = "Αποθήκευση";
 };
