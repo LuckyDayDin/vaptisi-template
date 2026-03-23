@@ -4,7 +4,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 🎥 video background */
+/* 🎥 VIDEO BACKGROUND */
 #introVideo {
   position: fixed;
   inset: 0;
@@ -14,7 +14,7 @@ body {
   z-index: -2;
 }
 
-/* 🌑 overlay */
+/* 🌑 OVERLAY */
 #overlay {
   position: fixed;
   inset: 0;
@@ -22,14 +22,14 @@ body {
   z-index: -1;
 }
 
-/* ✨ particles */
+/* ✨ PARTICLES */
 #particles {
   position: fixed;
   inset: 0;
   z-index: 0;
 }
 
-/* 🎬 scenes */
+/* 🎬 SCENES */
 .scene {
   height: 100vh;
   background-size: cover;
@@ -41,7 +41,7 @@ body {
 .scene2 { background-image: url('assets/bg2.jpg'); }
 .scene3 { background-image: url('assets/bg3.jpg'); }
 
-/* 🦁 simba */
+/* 🦁 SIMBA */
 .simba {
   position: fixed;
   bottom: -200px;
@@ -56,7 +56,7 @@ body {
   bottom: 80px;
 }
 
-/* 🌍 language */
+/* 🌍 LANGUAGE */
 #lang {
   position: fixed;
   top: 10px;
@@ -64,7 +64,7 @@ body {
   z-index: 4;
 }
 
-/* 📦 form */
+/* 📦 FORM */
 .container {
   background: rgba(255,255,255,0.95);
   padding: 20px;
@@ -79,12 +79,12 @@ body {
   box-shadow: 0 0 40px rgba(255,215,0,0.5);
 }
 
-/* hidden */
+/* 🔐 ADMIN */
 .hidden {
   display: none;
 }
 
-/* 📱 mobile */
+/* 📱 MOBILE */
 @media (max-width:600px) {
   .container {
     width: 90%;
