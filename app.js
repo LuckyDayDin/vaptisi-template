@@ -45,3 +45,66 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
 });
+import { db, collection, addDoc } from "./firebase.js";
+import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  const startBtn = document.getElementById("startBtn");
+  const music = document.getElementById("music");
+  const saveBtn = document.getElementById("saveBtn");
+
+  const counterEl = document.getElementById("counter");
+
+  /* 🎬 START */
+  startBtn.onclick = () => {
+    music.play().catch(()=>{});
+
+    setTimeout(() => {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("app").classList.remove("hidden");
+      loadGuests(); // 🔥 load counter
+    }, 4000);
+  };
+
+  /* 📊 LOAD COUNTER */
+  async function loadGuests() {
+    const snapshot = await getDocs(collection(db, "guests"));
+
+    let total = 0;
+    snapshot.forEach(doc => {
+      total += doc.data().people || 0;
+    });
+
+    counterEl.innerText = `👥 Σύνολο: ${total} άτομα`;
+  }
+
+  /* 💾 SAVE */
+  saveBtn.onclick = async () => {
+
+    const name = document.getElementById("name").value.trim();
+    const people = parseInt(document.getElementById("people").value);
+
+    if (name.length < 2) return alert("Βάλε όνομα");
+    if (!people || people < 1) return alert("Βάλε άτομα");
+
+    saveBtn.disabled = true;
+
+    try {
+      await addDoc(collection(db, "guests"), {
+        name,
+        people,
+        date: new Date().toLocaleString()
+      });
+
+      alert("✅ Καταχωρήθηκε!");
+      loadGuests(); // 🔥 refresh counter
+
+    } catch (e) {
+      alert("❌ error");
+    }
+
+    saveBtn.disabled = false;
+  };
+
+});
