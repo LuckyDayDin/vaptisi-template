@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Βάπτιση</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,14 +12,17 @@
 
 <!-- 🎥 INTRO VIDEO -->
 <video id="introVideo" autoplay muted playsinline>
-  <source src="./assets/intro.mp4" type="video/mp4">
+  <source src="assets/intro.mp4" type="video/mp4">
 </video>
+
+<!-- 🌑 OVERLAY -->
+<div id="overlay"></div>
 
 <!-- ✨ PARTICLES -->
 <canvas id="particles"></canvas>
 
 <!-- 🦁 SIMBA -->
-<img src="./assets/simba.png" class="simba">
+<img src="assets/simba.png" class="simba" id="simba">
 
 <!-- 🌍 LANGUAGE -->
 <select id="lang">
@@ -55,5 +60,6 @@
 </section>
 
 <script type="module" src="app.js"></script>
+
 </body>
 </html>
