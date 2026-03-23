@@ -134,3 +134,29 @@ startBtn.onclick = () => {
     document.getElementById("app").classList.remove("hidden");
   }, 7000);
 };
+startBtn.onclick = () => {
+
+  music.currentTime = 5; // ξεκινάει από συγκεκριμένο σημείο
+  music.play().catch(()=>{});
+
+  // ✨ τίτλος
+  setTimeout(() => {
+    document.querySelector(".title").style.opacity = 1;
+  }, 2000);
+
+  // 🦁 highlight simba
+  setTimeout(() => {
+    document.querySelector(".simba").style.filter =
+      "drop-shadow(0 0 50px gold)";
+  }, 3000);
+
+  // 🎬 μετάβαση
+  setTimeout(() => {
+    document.getElementById("intro").style.opacity = "0";
+  }, 6000);
+
+  setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("app").classList.remove("hidden");
+  }, 7000);
+};
