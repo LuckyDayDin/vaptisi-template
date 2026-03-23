@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <title>Βάπτιση</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Βάπτιση</title>
+<title>Σας προσκαλούμε σε μια μαγική μέρα</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- 🎥 INTRO VIDEO -->
-<video autoplay muted loop playsinline id="bgVideo">
-  <source src="./assets/intro.mp4" type="video/mp4">
+<!-- 🎥 VIDEO BACKGROUND -->
+<video id="introVideo" autoplay muted loop playsinline>
+  <source src="assets/intro.mp4" type="video/mp4">
 </video>
 
 <!-- 🌑 OVERLAY -->
@@ -36,6 +36,7 @@
 
 <section class="scene scene3 final">
   <div class="container">
+
     <h2 id="title">Δήλωση Παρουσίας</h2>
 
     <input id="name" placeholder="Όνομα">
@@ -45,17 +46,19 @@
       <option>🎁 Τίποτα</option>
       <option>💰 Φάκελος</option>
       <option>🎀 Δώρο</option>
+      <option>💲Paypal</option>
     </select>
 
     <button id="saveBtn">Αποθήκευση</button>
 
     <p id="counter">👥 Σύνολο: 0</p>
 
-    <button onclick="openAdmin()">🔐 Admin</button>
+    <button onclick="openAdmin()">🔎</button>
 
     <div id="adminPanel" class="hidden">
       <ul id="guestList"></ul>
     </div>
+
   </div>
 </section>
 
