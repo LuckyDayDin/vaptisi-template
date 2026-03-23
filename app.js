@@ -97,8 +97,8 @@ window.addEventListener("DOMContentLoaded", () => {
         date: new Date().toLocaleString()
       });
 
-      alert("✅ Καταχωρήθηκε!");
-      loadGuests(); // 🔥 refresh counter
+    alert(`🎉 Ευχαριστούμε ${name}!
+Η παρουσία σου καταγράφηκε 🦁`);
 
     } catch (e) {
       alert("❌ error");
