@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Βάπτιση</title>
+
 <title>Σας προσκαλούμε σε μια μαγική μέρα</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- 🎥 VIDEO BACKGROUND -->
+<!-- 🎥 VIDEO -->
 <video id="introVideo" autoplay muted loop playsinline>
   <source src="assets/intro.mp4" type="video/mp4">
 </video>
@@ -46,14 +47,14 @@
       <option>🎁 Τίποτα</option>
       <option>💰 Φάκελος</option>
       <option>🎀 Δώρο</option>
-      <option>💲Paypal</option>
+      <option>💲 Paypal</option>
     </select>
 
     <button id="saveBtn">Αποθήκευση</button>
 
     <p id="counter">👥 Σύνολο: 0</p>
 
-    <button onclick="openAdmin()">🔎</button>
+    <button onclick="openAdmin()">🔐 Admin</button>
 
     <div id="adminPanel" class="hidden">
       <ul id="guestList"></ul>
