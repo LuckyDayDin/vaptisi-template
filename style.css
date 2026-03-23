@@ -92,3 +92,15 @@ body {
 #intro {
   background: url('./assets/bg.jpg') center/cover no-repeat;
 }
+.title {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: titleReveal 2s 2s forwards;
+}
+
+@keyframes titleReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
