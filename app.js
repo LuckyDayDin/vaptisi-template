@@ -1,6 +1,5 @@
 import { db, collection, addDoc } from "./firebase.js";
 
-/* ✅ WAIT DOM */
 window.addEventListener("DOMContentLoaded", () => {
 
   const startBtn = document.getElementById("startBtn");
@@ -10,7 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
   /* 🎬 START */
   startBtn.onclick = () => {
 
-    music.play().catch(() => {}); // avoid crash
+    music.play().catch(() => {});
 
     setTimeout(() => {
       document.getElementById("intro").style.display = "none";
@@ -37,7 +36,6 @@ window.addEventListener("DOMContentLoaded", () => {
       });
 
       alert("✅ Καταχωρήθηκε!");
-
     } catch (e) {
       console.error(e);
       alert("❌ Firebase error");
