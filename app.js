@@ -100,3 +100,20 @@ window.openAdmin = async ()=>{
 
   document.getElementById("adminPanel").classList.remove("hidden");
 };
+/* 🦁 simba reveal */
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    document.getElementById("simba").classList.add("show-simba");
+  }
+});
+
+/* 🎥 smooth intro fade */
+setTimeout(() => {
+  const video = document.getElementById("introVideo");
+  video.style.transition = "opacity 2s";
+  video.style.opacity = "0";
+
+  setTimeout(() => {
+    video.style.display = "none";
+  }, 2000);
+}, 4000);
