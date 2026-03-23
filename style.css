@@ -26,13 +26,16 @@ body {
 
 .simba {
   width: 200px;
-  animation: up 3s ease forwards;
+  animation: rise 3s ease forwards;
   transform: translateY(150px);
   opacity: 0;
 }
 
-@keyframes up {
-  to { transform: translateY(0); opacity: 1; }
+@keyframes rise {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* CLOUDS */
@@ -41,11 +44,11 @@ body {
   width: 200%;
   height: 100%;
   background: url('https://i.ibb.co/7n4RZbM/clouds.png') repeat-x;
-  animation: clouds 40s linear infinite;
+  animation: move 40s linear infinite;
   opacity: 0.3;
 }
 
-@keyframes clouds {
+@keyframes move {
   to { transform: translateX(-50%); }
 }
 
