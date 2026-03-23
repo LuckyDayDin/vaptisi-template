@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Βάπτιση</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- 🎥 INTRO VIDEO -->
+<video id="introVideo" autoplay muted playsinline>
+  <source src="./assets/intro.mp4" type="video/mp4">
+</video>
+
+<!-- ✨ PARTICLES -->
+<canvas id="particles"></canvas>
+
+<!-- 🦁 SIMBA -->
+<img src="./assets/simba.png" class="simba">
+
+<!-- 🌍 LANGUAGE -->
+<select id="lang">
+  <option value="gr">GR</option>
+  <option value="en">EN</option>
+</select>
+
+<!-- 🎬 SCENES -->
+<section class="scene scene1"></section>
+<section class="scene scene2"></section>
+
+<section class="scene scene3 final">
+  <div class="container">
+    <h2 id="title">Δήλωση Παρουσίας</h2>
+
+    <input id="name" placeholder="Όνομα">
+    <input id="people" type="number" placeholder="Άτομα">
+
+    <select id="gift">
+      <option>🎁 Τίποτα</option>
+      <option>💰 Φάκελος</option>
+      <option>🎀 Δώρο</option>
+    </select>
+
+    <button id="saveBtn">Αποθήκευση</button>
+
+    <p id="counter">👥 Σύνολο: 0</p>
+
+    <button onclick="openAdmin()">🔐 Admin</button>
+
+    <div id="adminPanel" class="hidden">
+      <ul id="guestList"></ul>
+    </div>
+  </div>
+</section>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
