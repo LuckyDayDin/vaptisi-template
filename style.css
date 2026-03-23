@@ -89,3 +89,6 @@ body {
   font-size: 18px;
   color: #333;
 }
+#intro {
+  background: url('./assets/bg.jpg') center/cover no-repeat;
+}
