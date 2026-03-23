@@ -160,3 +160,7 @@ startBtn.onclick = () => {
     document.getElementById("app").classList.remove("hidden");
   }, 7000);
 };
+setTimeout(() => {
+  document.getElementById("introVideo").style.display = "none";
+  document.getElementById("app").classList.remove("hidden");
+}, 6000);
